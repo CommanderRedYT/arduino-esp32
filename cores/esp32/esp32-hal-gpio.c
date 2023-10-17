@@ -23,6 +23,7 @@
 #include "soc/gpio_struct.h"
 #include "soc/rtc_io_reg.h"
 #include "soc/rtc_io_periph.h"
+#include "soc/rtc_io_struct.h"
 
 #include "esp_system.h"
 #ifdef ESP_IDF_VERSION_MAJOR // IDF 4+
@@ -166,6 +167,7 @@ extern void ARDUINO_ISR_ATTR __pinMode(uint8_t pin, uint8_t mode)
 #endif
         SET_PERI_REG_MASK(rtc_io_desc[rtc_io].reg, (rtc_io_desc[rtc_io].mux));
         SET_PERI_REG_BITS(rtc_io_desc[rtc_io].reg, RTC_IO_TOUCH_PAD1_FUN_SEL_V, 0, rtc_io_desc[rtc_io].func);
+
 
         RTCIO.pin[rtc_io].pad_driver = 0;//OD = 1
         RTCIO.enable_w1tc.w1tc = (1U << rtc_io);
