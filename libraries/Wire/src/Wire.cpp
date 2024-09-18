@@ -28,9 +28,10 @@ extern "C" {
 #include <inttypes.h>
 }
 
+#include <format>
+
 #include <esp_log.h>
 #include <utility>
-#include <fmt/core.h>
 
 #include "esp32-hal-i2c.h"
 #include "esp32-hal-log.h"
@@ -52,7 +53,7 @@ std::string toString(i2c_err_t val)
     case I2C_ERROR_NO_BEGIN: return "I2C_ERROR_NO_BEGIN";
     default:
         ESP_LOGW("WIRE", "unknown i2c_err_t(%i)", std::to_underlying(val));
-        return fmt::format("Unknown i2c_err_t({})", std::to_underlying(val));
+        return std::format("Unknown i2c_err_t({})", std::to_underlying(val));
     }
 }
 
